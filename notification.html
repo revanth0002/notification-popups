@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+    <style>
+        .notification {
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 250px;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            border-radius: 5px;
+            position: relative;
+            margin: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .notification img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .notification p {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="notification">
+        <img src="https://wiki.openstreetmap.org/w/images/d/d1/Tile_osm-no-label.png" alt="Map">
+        <p>
+            Someone from <span id="state">California</span> signed up for a Free test drive 
+            <br><small><span id="time">10 minutes ago</span></small>
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var states = ["California", "New York", "Texas", "Florida", "Illinois"];
+            var signUpTimes = ["10 minutes ago", "20 minutes ago", "30 minutes ago", "1 hour ago"];
+
+            function updateNotification() {
+                var randomState = states[Math.floor(Math.random() * states.length)];
+                var randomTime = signUpTimes[Math.floor(Math.random() * signUpTimes.length)];
+                document.getElementById("state").textContent = randomState;
+                document.getElementById("time").textContent = randomTime;
+            }
+
+            // First notification after 10 seconds
+            setTimeout(updateNotification, 10000);
+            // Update every 2 minutes
+            setInterval(updateNotification, 120000);
+        });
+    </script>
+</body>
+</html>
